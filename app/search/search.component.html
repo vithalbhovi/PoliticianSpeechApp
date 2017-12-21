@@ -1,0 +1,82 @@
+<h4 class="text-center">Search All Speeches</h4>
+
+<div class="input-group">
+    <input type="text" class="form-control" placeholder="Search for speech....." #searchKey required>
+    <span class="input-group-btn">
+        <button type="button" class="btn btn-primary" (click)="searchSpeech(searchKey.value)"><span class="glyphicon glyphicon-search"></span></button>
+    </span>
+</div>
+
+<br>
+<span *ngIf="notFound" class="label label-danger">Please provide proper search keyword to search</span>
+<table class="table table-bordered" *ngIf="searchResultTable">
+  <tbody>
+    <tr>
+      <th scope="row">Author</th>
+      <td>{{searchedData.speechAuthor}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Subject</th>
+      <td>{{searchedData.speechName}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Date</th>
+      <td>{{searchedData.speechDate}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Content</th>
+      <td>{{searchedData.speechContent}}</td>
+    </tr>
+  </tbody>
+</table>
+<button *ngIf="searchResultTable" type="button" class="btn btn-info  pull-right" data-toggle="modal" data-target="#mailModal">Share Speech</button>
+<!-- Modal -->
+<div id="mailModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Send Email</h4>
+      </div>
+      <div class="modal-body" *ngIf="enableOnShare">
+          <form (ngSubmit)="shareSpeech(toEmail.value,searchedData.speechAuthor,searchedData.speechName,searchedData.speechDate,searchedData.speechContent)">
+            
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th scope="row">To Email</th>
+                  <td><input type ="email" class="form-control" placeholder="example@domain.com" #toEmail required/></td>
+                </tr>
+                <tr>
+                  <th scope="row">Author</th>
+                  <td>{{searchedData.speechAuthor}}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Subject</th>
+                  <td>{{searchedData.speechName}}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Date</th>
+                  <td>{{searchedData.speechDate}}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Content</th>
+                  <td>{{searchedData.speechContent}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary pull right">Submit</button>
+            </div>
+        </form>
+        
+      </div>
+      <div class="modal-footer ">
+        <span class="label label-success label-lg pull-left">{{successMsg}}</span>
+      </div>
+    </div>
+
+  </div>
+</div>

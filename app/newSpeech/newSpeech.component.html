@@ -1,0 +1,26 @@
+<h4 class="text-center">Add new Speech</h4>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+        <form (ngSubmit)="addSpeechData(speechAuthor.value,speechName.value,speechDate.value,speechContent.value);">
+            <div class="form-group">
+                <label for="speechName">Author</label>
+                <input type ="text" class="form-control" placeholder="Name" #speechAuthor required/> 
+            </div>
+            <div class="form-group">
+                <label for="speechName">Speech Subject</label>
+                <input type ="text" class="form-control" placeholder="Speech name" #speechName required />
+            </div>
+            <div class="form-group">
+                <label for="speechDate">Date</label>
+                <input type="date" class="form-control" #speechDate required />
+            </div>
+            <div class="form-group">
+                <label for="speechContent">Speech Content</label>
+                <textarea class="form-control" placeholder="Speech content" #speechContent required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
